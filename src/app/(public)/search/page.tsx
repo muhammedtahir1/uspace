@@ -1,6 +1,9 @@
+import SearchBar from "./search-bar";
 
 export default function SearchPage() {
   return (
-    <div>SearchPage</div>
+    <div>
+      <SearchBar/>
+    </div>
   )
 }
