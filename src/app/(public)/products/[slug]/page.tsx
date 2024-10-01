@@ -8,8 +8,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-// import { getProductBySlug } from "@/actions/action";
-import prisma from "@/lib/db";
 import { getProductBySlug } from "@/actions/action";
 import { notFound } from "next/navigation";
 
@@ -18,7 +16,7 @@ export default async function ProductsPage({params}:{
     slug:string;
   };
 }) {
-  console.log(params);
+  // console.log(params);
 
   if(!params.slug) return notFound();
   const product = await getProductBySlug({params})

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 // import "@/styles/globals.css";
 // import "@/styles/typography.css"
 import "./globals.css";
-import { Inter, Roboto_Mono  } from "next/font/google";
+import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-      className={`${inter.className}`} suppressHydrationWarning
+      className={`${inter.className}`} suppressHydrationWarning 
       >
 
         {children}

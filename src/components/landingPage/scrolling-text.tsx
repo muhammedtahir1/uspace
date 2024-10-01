@@ -1,4 +1,4 @@
-import { Award, Banknote, MessageCircle, MessageCircleCodeIcon } from "lucide-react";
+import { Award, Banknote, MessageCircle } from "lucide-react";
 
 export default function ScrollingText() {
   return (

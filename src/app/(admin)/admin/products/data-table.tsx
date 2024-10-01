@@ -20,9 +20,7 @@ import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
@@ -35,56 +33,10 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Product } from "@prisma/client"
+import DeleteBtn from "@/components/adminPage/delete-btn"
+import AddEditProductBtn from "@/components/adminPage/add-product-btn"
 
-const data: Product[] = [
-  {
-    id: 1,
-    price: 316,
-    name: "success",
-    slug: "ken99@yahoo.com",
-    description: "",
-    image: ''
-  },
-  {
-    id: 2,
-    price: 242,
-    name: "success",
-    slug: "Abe45@gmail.com",
-    description: "",
-    image: '',
-  },
-  {
-    id: 3,
-    price: 837,
-    name: "processing",
-    slug: "Monserrat44@gmail.com",
-    description: "",
-    image: ''
-  },
-  {
-    id: 4,
-    price: 874,
-    name: "success",
-    slug: "Silas22@gmail.com",
-    description: "",
-    image: ''
-  },
-  {
-    id: 5,
-    price: 721,
-    name: "failed",
-    slug: "carmella@hotmail.com",
-    description: "",
-    image: ''
-  },
-]
 
-// export type Payment = {
-//   id: string
-//   amount: number
-//   status: "pending" | "processing" | "success" | "failed"
-//   email: string
-// }
 
 export const columns: ColumnDef<Product>[] = [
   {
@@ -132,8 +84,11 @@ export const columns: ColumnDef<Product>[] = [
   {
     id: "actions",
     enableHiding: false,
-    cell: ({ row }) => {
-      const payment = row.original
+    cell: (data) => {
+      // console.log(data)
+      // console.log(data.row.original.id)
+      // const payment = data.row.original
+      // const productId = Number(row.getValue("id"))
 
       return (
         <DropdownMenu>
@@ -143,15 +98,15 @@ export const columns: ColumnDef<Product>[] = [
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align="end" className="space-y-2">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={()=>{}}
-            >
-              Delete
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Edit</DropdownMenuItem>
+            {/* <DropdownMenuItem> */}
+            <DeleteBtn id={data.row.original.id} />
+            {/* </DropdownMenuItem> */}
+            {/* <DropdownMenuSeparator /> */}
+            {/* <DropdownMenuItem> */}
+            <AddEditProductBtn actionType="edit" className="h-full w-full" data={data.row.original} />
+            {/* </DropdownMenuItem> */}
           </DropdownMenuContent>
         </DropdownMenu>
       )
@@ -159,7 +114,16 @@ export const columns: ColumnDef<Product>[] = [
   },
 ]
 
-export function DataTableDemo() {
+
+type DataTableProps = {
+  columns: ColumnDef<Product>[],
+  data: Product[]
+}
+
+export function DataTableDemo({ columns, data }: DataTableProps) {
+  // console.log(products);
+  // TODO - dynamic data is not displaying in the table
+
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -191,10 +155,10 @@ export function DataTableDemo() {
     <div className="w-full px-10 md:px-20 py-10">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          placeholder="Filter products..."
+          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table.getColumn("name")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
@@ -236,9 +200,9 @@ export function DataTableDemo() {
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                     </TableHead>
                   )
                 })}

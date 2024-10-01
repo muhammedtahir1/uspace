@@ -40,6 +40,8 @@ export default function AsideNav() {
           <AdminMenuBar />
           {/* <AddProductForm actionType="add" /> */}
           <Button>Add Product</Button>
+            
+          {/* <AddProductBtn/> */}
         </header>
       </div>
     </div>

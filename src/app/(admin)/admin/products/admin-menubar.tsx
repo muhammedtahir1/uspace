@@ -4,9 +4,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import { Ellipsis, Menu } from 'lucide-react'
+import { Menu } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+
 const AdminMenuBar = () => {
   return (
     <div className='md:hidden'>
@@ -25,7 +26,9 @@ const AdminMenuBar = () => {
           </Link>
 
         </PopoverContent>
-      </Popover></div>
+      </Popover>
+      
+      </div>
   )
 }
 

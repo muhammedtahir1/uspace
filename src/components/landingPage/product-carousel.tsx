@@ -3,8 +3,8 @@ import {
     Carousel,
     CarouselContent,
     CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
+    // CarouselNext,
+    // CarouselPrevious,
 } from "@/components/ui/carousel"
 import ProductCard from "./product-card"
 import { getProducts } from "@/actions/action"
