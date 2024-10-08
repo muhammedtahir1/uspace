@@ -1,4 +1,5 @@
-import React from 'react'
+"use client"
+import { useState } from 'react'
 import { Button } from '../ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog'
 import AdminForm from './admin-form'
@@ -12,8 +13,12 @@ type Props = {
 }
 
 export default function AddEditProductBtn({ actionType, className, data }: Props) {
+	
+	const [isFormOpen, setIsFormOpen]= useState(false)
+
 	return (
-		<Dialog>
+
+		<Dialog open={isFormOpen} onOpenChange={setIsFormOpen} > 
 			<DialogTrigger asChild>
 				<Button className={cn('', className)}>
 					{actionType === "add" ? "Add Product" : "Edit"}
@@ -30,7 +35,9 @@ export default function AddEditProductBtn({ actionType, className, data }: Props
 
 				<DialogDescription asChild>
 
-					<AdminForm actionType={actionType} data={actionType == "edit" ? data : undefined}  />
+					<AdminForm actionType={actionType} data={actionType == "edit" ? data : undefined} onFormSubmission={()=> {
+						setIsFormOpen(false)
+					}}  />
 				</DialogDescription>
 
 			</DialogContent>

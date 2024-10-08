@@ -37,12 +37,13 @@ const formSchema = z.object({
 })
 
 type AdminFormProps = {
-	actionType?: "add" | "edit"
-	data?: Product
+	actionType?: "add" | "edit";
+	data?: Product;
+	onFormSubmission: ()=> void
 }
 
 
-export default function AdminForm({ actionType, data }: AdminFormProps) {
+export default function AdminForm({ actionType, data, onFormSubmission }: AdminFormProps) {
 
 	let productId: number
 	if (data) {
@@ -64,9 +65,6 @@ export default function AdminForm({ actionType, data }: AdminFormProps) {
 	// });
 
 	// Omit<Product, "id" | "slug">
-
-
-
 
 
 	// 1. Define your form.
@@ -95,6 +93,8 @@ export default function AdminForm({ actionType, data }: AdminFormProps) {
 			await editProduct({newProduct, productId})
 
 		}
+
+		onFormSubmission()
 	}
 
 	return (
