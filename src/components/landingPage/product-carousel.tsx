@@ -14,7 +14,7 @@ async function ProductCarousel() {
 
     return (
         <section className="mt-10 px-4 md:px-24 md:py-12 relative">
-            <h3 className="mb-4">Back to Gym</h3>
+            <h3 className="mb-4 md:mb-6 font-semibold text-2xl md:text-3xl">Back to Gym</h3>
             <Carousel
                 opts={{
                     align: "start",

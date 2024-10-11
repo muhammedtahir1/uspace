@@ -7,8 +7,8 @@ export default function ProductCard({product} : {product : Product}) {
 
   const {name,price,image,slug} = product;
   return (
-    <Card className="border-none shadow-none h-80 w-48 rounded-xl md:w-72 mx-1">
-      <CardHeader className="overflow-hidden bg-[#F5F5F5] py-12">
+    <Card className="border-none shadow-none rounded-xl mx-1">
+      <CardHeader className="overflow-hidden bg-[#F5F5F5] p-0 aspect-square items-center justify-center">
         <Link
           href={`/products/${slug}`}
           className="rounded-xl md:mb-2 hover:scale-105 transition-all duration-300"
