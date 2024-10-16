@@ -10,17 +10,18 @@ import {
 } from "@/components/ui/breadcrumb"
 import { getProductBySlug } from "@/actions/action";
 import { notFound } from "next/navigation";
+import AddToCartBtn from "./add-to-cart-btn";
 
-export default async function ProductsPage({params}:{
-  params : {
-    slug:string;
+export default async function ProductsPage({ params }: {
+  params: {
+    slug: string;
   };
 }) {
   // console.log(params);
 
-  if(!params.slug) return notFound();
-  const product = await getProductBySlug({params})
-  if(!product) return notFound();
+  if (!params.slug) return notFound();
+  const product = await getProductBySlug({ params })
+  if (!product) return notFound();
 
   return (
     <main className="flex flex-col md:flex-row md:items-center md:justify-center gap-8">
@@ -32,17 +33,17 @@ export default async function ProductsPage({params}:{
               alt="product image"
               width={600}
               height={400}
-              priority={false} 
+              priority={false}
               className="w-full h-auto object-cover"
             />
           </div>
-          <div className= "py-5 bg-[#F5F5F5]">
+          <div className="py-5 bg-[#F5F5F5]">
             <Image
               src={product?.image as string}
               alt="product image"
               width={400}
               height={300}
-              priority={false} 
+              priority={false}
               className="w-full h-auto object-cover"
             />
           </div>
@@ -52,7 +53,7 @@ export default async function ProductsPage({params}:{
               alt="product image"
               width={400}
               height={300}
-              priority={false} 
+              priority={false}
               className="w-full h-auto object-cover"
             />
           </div>
@@ -79,8 +80,12 @@ export default async function ProductsPage({params}:{
         <h1 className=" text-3xl font-bold">{product?.name}</h1>
         <p className="text-xl">From ${product?.price}</p>
         <div>
-        <Button variant={"default"}>Select your size</Button>
-
+          <AddToCartBtn product={{
+            id: product.id,
+            name: product.name,
+            image: product.image,
+            price: product.price, quantity: 1
+          }} />
         </div>
       </div>
     </main>
