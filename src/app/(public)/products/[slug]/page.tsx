@@ -84,7 +84,8 @@ export default async function ProductsPage({ params }: {
             id: product.id,
             name: product.name,
             image: product.image,
-            price: product.price, quantity: 1
+            price: product.price, 
+            quantity: 1
           }} />
         </div>
       </div>
